@@ -80,8 +80,12 @@ module.exports = function(){
           var inserts = [person, cert];
           sql = mysql.pool.query(sql, inserts, function(error, results, fields){
             if(error){
+                //TODO: send error messages to frontend as the following doesn't work
+                /* 
                 res.write(JSON.stringify(error));
                 res.end();
+                */
+                console.log(error)
             }
           });
         } //for loop ends here 
