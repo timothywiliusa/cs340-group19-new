@@ -16,7 +16,7 @@ module.exports = function(){
 
     /* get certificates to populate in dropdown */
     function getCertificates(res, mysql, context, complete){
-        sql = "SELECT certificate_id AS cid, title FROM bsg_cert";
+        sql = "SELECT certification_id AS cid, title FROM bsg_cert";
         mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
@@ -32,7 +32,7 @@ module.exports = function(){
      * fname+lname or id column
      */
     function getPeopleWithCertificates(res, mysql, context, complete){
-        sql = "SELECT pid, cid, CONCAT(fname,' ',lname) AS name, title AS certificate FROM bsg_people INNER JOIN bsg_cert_people on bsg_people.character_id = bsg_cert_people.pid INNER JOIN bsg_cert on bsg_cert.certificate_id = bsg_cert_people.cid ORDER BY name, certificate"
+        sql = "SELECT pid, cid, CONCAT(fname,' ',lname) AS name, title AS certificate FROM bsg_people INNER JOIN bsg_cert_people on bsg_people.character_id = bsg_cert_people.pid INNER JOIN bsg_cert on bsg_cert.certification_id = bsg_cert_people.cid ORDER BY name, certificate"
          mysql.pool.query(sql, function(error, results, fields){
             if(error){
                 res.write(JSON.stringify(error));
