@@ -96,10 +96,13 @@ module.exports = function(){
 
     router.put('/:id', function(req, res){
         var mysql = req.app.get('mysql');
-        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE id=?";
+        console.log(req.body)
+        console.log(req.params.id)
+        var sql = "UPDATE bsg_people SET fname=?, lname=?, homeworld=?, age=? WHERE character_id=?";
         var inserts = [req.body.fname, req.body.lname, req.body.homeworld, req.body.age, req.params.id];
         sql = mysql.pool.query(sql,inserts,function(error, results, fields){
             if(error){
+                console.log(error)
                 res.write(JSON.stringify(error));
                 res.end();
             }else{
