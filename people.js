@@ -38,6 +38,22 @@ module.exports = function(){
         });
     }
 
+    /* Find people whose fname starts with a given string in the req */
+    function getPeopleWithNameLike(req, res, mysql, context, complete) {
+      //sanitize the input as well as include the % character
+       var query = "SELECT bsg_people.character_id as id, fname, lname, bsg_planets.name AS homeworld, age FROM bsg_people INNER JOIN bsg_planets ON homeworld = bsg_planets.planet_id WHERE bsg_people.fname LIKE " + mysql.pool.escape(req.params.s + '%');
+      console.log(query)
+
+      mysql.pool.query(query, function(error, results, fields){
+            if(error){
+                res.write(JSON.stringify(error));
+                res.end();
+            }
+            context.people = results;
+            complete();
+        });
+    }
+     
     function getPerson(res, mysql, context, id, complete){
         var sql = "SELECT character_id as id, fname, lname, homeworld, age FROM bsg_people WHERE character_id = ?";
         var inserts = [id];
@@ -56,7 +72,7 @@ module.exports = function(){
     router.get('/', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
         getPeople(res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -73,7 +89,7 @@ module.exports = function(){
     router.get('/filter/:homeworld', function(req, res){
         var callbackCount = 0;
         var context = {};
-        context.jsscripts = ["deleteperson.js","filterpeople.js"];
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
         var mysql = req.app.get('mysql');
         getPeoplebyHomeworld(req,res, mysql, context, complete);
         getPlanets(res, mysql, context, complete);
@@ -83,6 +99,22 @@ module.exports = function(){
                 res.render('people', context);
             }
 
+        }
+    });
+
+    /*Display all people whose name starts with a given string. Requires web based javascript to delete users with AJAX */
+    router.get('/search/:s', function(req, res){
+        var callbackCount = 0;
+        var context = {};
+        context.jsscripts = ["deleteperson.js","filterpeople.js","searchpeople.js"];
+        var mysql = req.app.get('mysql');
+        getPeopleWithNameLike(req, res, mysql, context, complete);
+        getPlanets(res, mysql, context, complete);
+        function complete(){
+            callbackCount++;
+            if(callbackCount >= 2){
+                res.render('people', context);
+            }
         }
     });
 
