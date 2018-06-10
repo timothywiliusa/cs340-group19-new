@@ -15,6 +15,18 @@
     <input type="submit" value="Submit">
  </form>
 <br/>
+
+<form id='filter_people' action='' method=''>
+<!--- this form does not submit directly, the button handles all the interaction with backend -->
+    <label> Filter by homeworld </label>
+    <select id='homeworld_filter' name="homeworld"> 
+        {{#each planets}}
+        <option value="{{id}}">{{name}}</option>
+        {{/each}}
+    </select><br>
+    <input type="button" value="Filter" onclick="filterPeopleByHomeworld()">
+</form>
+
 <h3>Current people:</h3>
 <table>
     <thead> 
@@ -23,7 +35,7 @@
         <th>Homeworld</th>
         <th>Age</th>  
     </thead> 
-    <tbody> 
+    <tbody>
         {{#each people}} 
         <tr> 
             <td>{{fname}}</td> 
