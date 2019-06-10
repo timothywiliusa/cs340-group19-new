@@ -5,7 +5,11 @@
     Last name: <input type="text" name="lname" value="{{person.lname}}"><br>
     Homeworld: <select name="homeworld" id="planet-selector"> 
         {{#each planets}}
-        <option value="{{id}}">{{name}}</option>
+            {{#ifEquals id person.homeworld }}
+                <option value="{{id}}" selected>{{name}}</option>
+            {{else}}
+                <option value="{{id}}">{{name}}</option>
+            {{/ifEquals}}
         {{/each}}
     </select><br>
     Age: <input type="number" name="age" value="{{person.age}}"><br>
