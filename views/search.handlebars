@@ -1,0 +1,36 @@
+<h1>Store</h1>
+
+<div class="ui input">
+	<input type="text" placeholder="Search Item..." />
+</div>
+<form id="typepicker" action="/search/:" method="get">
+<label for="type">Merchandise Type: </label>
+Select: <select name="type">
+  <option value="None">None</option>
+  <option value="Weapon">Weapon</option>
+  <option value="Blueprint">Blueprint</option>
+  <option value="Program">Program</option>
+  <option value="Material">Raw Material</option>
+  <option value="Music">Music</option>
+  <option value="Toy">Toy</option>
+  <option value="Nutrition">Nutrition/Substance</option>
+  <option value="Armor">Armor/Apparel</option>
+  <input type="submit" value="Submit">
+</form>
+</select>
+  <TABLE BORDER="5"    WIDTH="90%"   CELLPADDING="4" CELLSPACING="3">
+   <TR>
+      <TH>Type</TH>
+      <TH>Title</TH>
+      <TH>Price</TH>
+      <TH>Purchase</TH>
+   </TR>
+  {{#each search}}
+   <TR ALIGN="CENTER">
+      <td>{{merchType}}</td>
+      <td>{{title}}</td>
+      <td>{{price}}</td>
+      <td><button>add to cart</button></td>
+   </TR>
+  {{/each}}
+</TABLE>
