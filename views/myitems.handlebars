@@ -1,0 +1,21 @@
+<h1>Your listed items</h1>
+
+</select>
+  <TABLE BORDER="5"    WIDTH="90%"   CELLPADDING="4" CELLSPACING="3">
+   <TR>
+      <TH>Type</TH>
+      <TH>Title</TH>
+      <TH>Price</TH>
+      <TH>Quantity Remaining</TH>
+      <TH>Remove</TH>
+   </TR>
+  {{#each search}}
+   <TR ALIGN="CENTER">
+      <td>{{merchType}}</td>
+      <td>{{title}}</td>
+      <td>{{price}}</td>
+      <td>{{quantity}}</td>
+      <td><button>Remove Item</button></td>
+   </TR>
+  {{/each}}
+</TABLE>

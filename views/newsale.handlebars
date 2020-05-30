@@ -1,0 +1,38 @@
+<script type="text/javascript">
+
+function newPost(){
+    console.log("New Post");
+    var query = "INSERT INTO merch (title,merchType,quantity,user,price,photo) VALUES (?,?,?,?,?,?)";
+    var mysql = app.mysql;
+    var title = document.getElementById('title').value;
+    var type = document.getElementById('type').value;
+    var cost = document.getElementById('cost').value;
+    var quantity = document.getElementById('quantity').value;
+    var url = document.getElementById('url').value;
+
+    var inserts = [title, type, quantity,'Crayolaguy',cost,url];
+
+    mysql.pool.query(query, inserts)
+
+}
+</script>
+
+<h1>Post New Item For Sale</h1>
+<form id="newsale" action="/search" method="post">
+Title: <input id='title' type='text' value=''><br>
+Item Type: <select id='type' name="type">
+  <option value="None">None</option>
+  <option value="Weapon">Weapon</option>
+  <option value="Blueprint">Blueprint</option>
+  <option value="Program">Program</option>
+  <option value="Material">Raw Material</option>
+  <option value="Music">Music</option>
+  <option value="Toy">Toy</option>
+  <option value="Nutrition">Nutrition/Substance</option>
+  <option value="Armor">Armor/Apparel</option>
+  </select><br>
+  Cost (universal units): <input id='cost' type='text' value=''><br>
+  Quantity: <input id='quantity' type='text' value=''><br>
+  URL (optional): <input id='url' type='text' value=''><br>
+    <input type="submit" value="Submit">
+</form>

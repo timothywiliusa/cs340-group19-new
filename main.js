@@ -22,6 +22,8 @@ app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
 app.use('/planets', require('./planets.js'));
 app.use('/search', require('./search.js'));
+app.use('/newsale', require('./newsale.js'));
+app.use('/myitems', require('./myitems.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
