@@ -4,12 +4,25 @@
   <title> Spaceshop </title>
 </head>
 <body>
-  <h2> SpaceShop </h2>
-  <ul>
-    <li> <a href='/people'>People</a></li>
-    <li> <a href='/people_certs'>People_certs</a></li>
-    <li> <a href='/people/1'>People/1</a></li>
-    <li> <a href='/search'>Search Merch</a></li>
-  </ul>
+  <h2> Welcome to SpaceShop </h2>
+  <h3> Login </h4>
+    <form action="/profile" method='get'>
+    Username: <input name='username' type='text' value=''><br>
+    Password: <input name='passcode' type='password' value=''><br>
+    <input type="submit" value="Sign In">
+    </form>
+  <h3> Register </h4>
+  <form action="/profile" method='post'>
+    Username: <input name='usernamereg' type='text' value=''><br>
+    Password: <input name='passcodereg' type='password' value=''><br>
+  <h5> Optional Address </h5>
+    ZIP: <input name='zip' type='text' value=''><br>
+    Planet # From Star: <input name='planetNum' type='text' value=''><br>
+    X Coordinate: <input name='Xcoord' type='text' value=''><br>
+    Y Coordinate: <input name='Ycoord' type='text' value=''><br>
+    PO Box: <input name='POBox' type='text' value=''><br>
+    <input type="submit" value="Register">
+  </form>
+
 </body>
 </html>

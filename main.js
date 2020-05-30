@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var handlebars = require('express-handlebars').create({
         defaultLayout:'main',
-        });
+});
 
 app.engine('handlebars', handlebars.engine);
 app.use(bodyParser.urlencoded({extended:true}));
@@ -24,6 +24,7 @@ app.use('/planets', require('./planets.js'));
 app.use('/search', require('./search.js'));
 app.use('/newsale', require('./newsale.js'));
 app.use('/myitems', require('./myitems.js'));
+app.use('/profile', require('./profile.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){

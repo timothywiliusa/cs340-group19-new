@@ -1,0 +1,29 @@
+<h1>Your Profile</h1>
+{{#each profile}}
+	<p>(to edit something, simply edit the box)</p>
+	<h2 id="username">{{username}}</h2>
+	<label for="password">Password (at least 7 characters long):</label>
+	<input type="password" id="name" name="name" required minlength="7" size="28"></input>
+
+	<h2>Optional Address:</h2>
+
+	<label for="zip">ZIP Code:</label>
+	<input type="text" id="zip" name="zip" size="28" placeholder={{zip}}></input><br>
+
+	<label for="planet">Planet # from star:</label>
+	<input type="text" id="planet" name="planet" size="28" placeholder={{planetNum}}></input><br>
+
+	<label for="xcoord">X Coordinate:</label>
+	<input type="text" id="xcoord" name="xcoord" size="28" placeholder={{Xcoord}}></input><br>
+
+	<label for="ycoord">Y Coordinate:</label>
+	<input type="text" id="ycoord" name="ycoord" size="28" placeholder={{Ycoord}}></input><br>
+
+	<label for="po">PO Box #:</label>
+	<input type="text" id="po" name="po" size="28" placeholder={{POBox}}></input><br>
+
+				
+	<button onClick={editcomplete} type="button">
+		Complete Edit
+	</button>
+{{/each}}
