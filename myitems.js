@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     router.get('/', function servepage(req, res){
-        var query = 'SELECT title, merchType, price, quantity FROM merch WHERE user = "ISellWeapons"'
+        var query = 'SELECT id, title, merchType, price, quantity FROM merch WHERE user = "ISellWeapons"'
         var mysql = req.app.get('mysql');
         var context = {};
 
@@ -19,6 +19,22 @@ module.exports = function(){
         }
         mysql.pool.query(query, handleRenderOfMerch)
     });
+    router.get('/delete/:id', function (req, res){
+        var mysql = req.app.get('mysql');
+
+        var inserts = [req.query.id]
+        console.log("deleting ",req.query.id);
+        var query = 'DELETE FROM merch WHERE id = ?';
+        console.log(inserts);
+        query = mysql.pool.query(query,inserts,function(error, results, fields){
+            if(error){
+                console.log(error);
+                res.end();
+            }else{
+                res.redirect('/myitems');
+            }
+        });
+    });
     
     router.post('/', function (req, res){
         var mysql = req.app.get('mysql');
@@ -33,6 +49,21 @@ module.exports = function(){
 
         query = mysql.pool.query(query,inserts,function(error, results, fields){
             if(error){
+                res.end();
+            }else{
+                res.redirect('/myitems');
+            }
+        });
+    });
+    router.post('/edit', function (req, res){
+        var mysql = req.app.get('mysql');
+
+        var inserts = [req.body.title, req.body.url, req.body.type, req.body.quantity, req.body.cost, req.body.id]
+        var query = 'UPDATE merch SET title = ?, photo = ?, merchType = ?, quantity = ?, price = ? WHERE id = ?';
+        console.log(inserts);
+        query = mysql.pool.query(query,inserts,function(error, results, fields){
+            if(error){
+                console.log(error);
                 res.end();
             }else{
                 res.redirect('/myitems');

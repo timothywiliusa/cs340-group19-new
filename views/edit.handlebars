@@ -1,0 +1,20 @@
+<h1>Edit Item</h1>
+{{#each search}}
+<form id="newsale" action="../myitems/edit" method="post">
+Title: <input name='title' type='text' value='{{title}}'><input type='hidden' name='id' value='{{id}}'><br>
+Item Type: <select id='type' name="type" value={{merchType}}>
+  <option value="Weapon">Weapon</option>
+  <option value="Blueprint">Blueprint</option>
+  <option value="Program">Program</option>
+  <option value="Material">Raw Material</option>
+  <option value="Music">Music</option>
+  <option value="Toy">Toy</option>
+  <option value="Nutrition">Nutrition/Substance</option>
+  <option value="Armor">Armor/Apparel</option>
+  </select><br>
+  Cost (universal units): <input name='cost' type='text' value={{price}}><br>
+  Quantity: <input name='quantity' type='text' value={{quantity}}><br>
+  URL (optional): <input name='url' type='text' value={{photo}}><br>
+    <input type="submit" value="Submit">
+</form>
+{{/each}}
