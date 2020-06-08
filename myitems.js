@@ -3,7 +3,9 @@ module.exports = function(){
     var router = express.Router();
 
     router.get('/', function servepage(req, res){
-        var query = 'SELECT id, title, merchType, price, quantity FROM merch WHERE user = "ISellWeapons"'
+        var user = req.app.get('user');
+        inserts=[user];
+        var query = 'SELECT id, title, merchType, price, quantity FROM merch WHERE user = (?)'
         var mysql = req.app.get('mysql');
         var context = {};
 
@@ -17,7 +19,7 @@ module.exports = function(){
        
             res.render('myitems', context)
         }
-        mysql.pool.query(query, handleRenderOfMerch)
+        mysql.pool.query(query,inserts, handleRenderOfMerch)
     });
     router.get('/delete/:id', function (req, res){
         var mysql = req.app.get('mysql');
@@ -43,9 +45,10 @@ module.exports = function(){
         console.log(req.body.quantity)
         console.log(req.body.url)
         console.log(req.body.cost)
+        var user = req.app.get('user');
 
-        var inserts = [req.body.title, req.body.url, req.body.type, req.body.quantity, req.body.cost]
-        var query = 'INSERT INTO merch (title, photo, merchType, quantity, price) VALUES (?,?,?,?,?)';
+        var inserts = [req.body.title, req.body.url, req.body.type, req.body.quantity, req.body.cost, user]
+        var query = 'INSERT INTO merch (title, photo, merchType, quantity, price, user) VALUES (?,?,?,?,?,?)';
 
         query = mysql.pool.query(query,inserts,function(error, results, fields){
             if(error){
