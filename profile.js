@@ -25,6 +25,24 @@ module.exports = function(){
         }
         mysql.pool.query(query, inserts, handleProfile)
     });
+    router.get('/edit', function servePage2(req,res){
+        var query = "UPDATE user SET zip=?, planetNum=?, Xcoord=?, Ycoord=?, POBox=? WHERE username = ?"
+        var inserts = [req.query.zip, req.query.planet, req.query.xcoord, req.query.ycoord, req.query.po, req.app.get('user')];
+        console.log(inserts)
+        var mysql = req.app.get('mysql');
+        var context = {};
+
+        mysql.pool.query(query, inserts, function(error, results, fields){
+            if(error){
+                console.log(error);
+                res.end();
+            }
+            else{
+                res.redirect('/profile')
+            }
+        })
+    });
+
 
     router.get('/log', function servepage(req, res){
         var query = "SELECT username, zip, planetNum, Xcoord, Ycoord, POBox FROM user WHERE username = (?)"

@@ -30,6 +30,7 @@ app.use('/profile', require('./profile.js'));
 app.use('/checkout', require('./checkout.js'));
 app.use('/thank', require('./thank.js'));
 app.use('/edit', require('./edit.js'));
+app.use('/editprofile', require('./editprofile.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
