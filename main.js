@@ -7,6 +7,7 @@ var express = require('express');
 var mysql = require('./dbcon.js');
 var bodyParser = require('body-parser');
 var user = "";
+var cart = [];
 
 var app = express();
 var handlebars = require('express-handlebars').create({
@@ -20,6 +21,7 @@ app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 app.set('user', user);
+app.set('cart', cart);
 app.use('/people_certs', require('./people_certs.js'));
 app.use('/people', require('./people.js'));
 app.use('/planets', require('./planets.js'));

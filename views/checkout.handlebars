@@ -4,7 +4,25 @@
 Total Cost: <label>{{total}}</label><br>
 Universal Credit Number: <input type="text"><br>
 Confirm Purchase: <input type='submit' name='submit'><br>
+<TABLE BORDER="5"    WIDTH="90%"   CELLPADDING="4" CELLSPACING="3">
+   <TR>
+      <TH>Type</TH>
+      <TH>Title</TH>
+      <TH>Price</TH>
+      <TH>Purchase</TH>
+   </TR>
+  {{#each search}}
+   <TR ALIGN="CENTER">
+    <form action='/checkout/remove'>
+      <td>{{merchType}}</td>
+      <td><input type = 'hidden' name='id' value="{{id}}">{{title}}</td>
+      <td>{{price}}</td>
+      <td><input type='submit' formaction='/checkout/remove/id' value='remove from cart'></td>
+   </form>
+   </TR>
+  {{/each}}
+</TABLE>
 </form>
 
 
-</form>
+
