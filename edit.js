@@ -5,7 +5,7 @@ module.exports = function(){
     router.get('/:id', function servepage(req, res){
         console.log(req.query.id);
         var inserts = req.query.id;
-        var myquery = 'SELECT id, title, merchType, price, quantity, photo FROM merch WHERE id = (?)'
+        var myquery = 'SELECT id, title, merchType, price, quantity FROM merch WHERE id = (?)'
         var mysql = req.app.get('mysql');
         var context = {};
 

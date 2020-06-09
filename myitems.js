@@ -47,7 +47,7 @@ module.exports = function(){
         var user = req.app.get('user');
 
         var inserts = [req.body.title,req.body.type, req.body.quantity, req.body.cost, user]
-        var query = 'INSERT INTO merch (title, merchType, quantity, price, user) VALUES (?,?,?,?,?,?)';
+        var query = 'INSERT INTO merch (title, merchType, quantity, price, user) VALUES (?,?,?,?,?)';
 
         query = mysql.pool.query(query,inserts,function(error, results, fields){
             if(error){
