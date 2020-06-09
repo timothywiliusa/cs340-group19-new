@@ -43,12 +43,11 @@ module.exports = function(){
         console.log(req.body.title)
         console.log(req.body.type)
         console.log(req.body.quantity)
-        console.log(req.body.url)
         console.log(req.body.cost)
         var user = req.app.get('user');
 
-        var inserts = [req.body.title, req.body.url, req.body.type, req.body.quantity, req.body.cost, user]
-        var query = 'INSERT INTO merch (title, photo, merchType, quantity, price, user) VALUES (?,?,?,?,?,?)';
+        var inserts = [req.body.title,req.body.type, req.body.quantity, req.body.cost, user]
+        var query = 'INSERT INTO merch (title, merchType, quantity, price, user) VALUES (?,?,?,?,?,?)';
 
         query = mysql.pool.query(query,inserts,function(error, results, fields){
             if(error){
@@ -61,8 +60,8 @@ module.exports = function(){
     router.post('/edit', function (req, res){
         var mysql = req.app.get('mysql');
 
-        var inserts = [req.body.title, req.body.url, req.body.type, req.body.quantity, req.body.cost, req.body.id]
-        var query = 'UPDATE merch SET title = ?, photo = ?, merchType = ?, quantity = ?, price = ? WHERE id = ?';
+        var inserts = [req.body.title, req.body.type, req.body.quantity, req.body.cost, req.body.id]
+        var query = 'UPDATE merch SET title = ?, merchType = ?, quantity = ?, price = ? WHERE id = ?';
         console.log(inserts);
         query = mysql.pool.query(query,inserts,function(error, results, fields){
             if(error){
