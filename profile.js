@@ -45,27 +45,52 @@ module.exports = function(){
 
 
     router.get('/log', function servepage(req, res){
-        var query = "SELECT username, zip, planetNum, Xcoord, Ycoord, POBox FROM user WHERE username = (?)"
+        var query = "SELECT username, passcode, zip, planetNum, Xcoord, Ycoord, POBox FROM user WHERE username = (?)"
         var inserts = req.query.username;
+        // user input name
         console.log(inserts)
+        // user input ps
+        var PW = req.query.passcode;
+        console.log(PW)
         var mysql = req.app.get('mysql');
         var context = {};
-
-        function handleProfile(error, results, fields){
-                console.log(results);
-                if(results.length > 0){
-                    context.profile = results;
-                    var user = req.query.username;
-                    req.app.set('user', user);
-                    console.log(user);
-                    res.render('profile', context)
-                }
-                else{
-                    console.log("No profile found")
-                    res.redirect('../')
-                }
+    
+    /*
+    function handlePass(error, results, fields){
+      console.log(results)
+      if (results.length > 0) {
+        
+        
+        if (result[0].passcode == PW) {
+          res.render('profile', context)
         }
+      }
+
+      else {
+        console.log("Password Incorrect")
+        res.redirect('../')
+      }
+    }*/
+
+        function handleProfile(error, results, fields) {
+        // user info
+        console.log(results[0].passcode);
+        if (results.length > 0 && results[0].passcode == PW) {
+            context.profile = results;
+            var user = req.query.username;
+            req.app.set('user', user);
+            res.render('profile', context)
+        }
+
+        else {
+            console.log("No profile found, please check your username and password")
+                res.redirect('../')
+            }
+        }
+
+    
         mysql.pool.query(query, inserts, handleProfile)
+        //mysql.pool.query(query, PW, handlePass)
     });
 
     router.post('/',function servepage(req, res){
