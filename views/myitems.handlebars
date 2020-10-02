@@ -7,15 +7,17 @@
       <TH>Title</TH>
       <TH>Price</TH>
       <TH>Quantity Remaining</TH>
-      <TH>Remove</TH>
+      <TH>Remove/Edit</TH>
    </TR>
   {{#each search}}
    <TR ALIGN="CENTER">
-      <td>{{merchType}}</td>
-      <td>{{title}}</td>
-      <td>{{price}}</td>
-      <td>{{quantity}}</td>
-      <td><button>Remove Item</button></td>
+   <form action='/myitems/delete/id'>
+      <td name="merchType">{{merchType}}</td>
+      <td> <input type='hidden' name="id" value="{{id}}">{{title}}</td>
+      <td name="price">{{price}}</td>
+      <td name="quantity">{{quantity}}</td>
+      <td><input type='submit' value="Remove"><input type='submit' value='Edit' formaction='/edit/id'>
+   </form>
    </TR>
   {{/each}}
 </TABLE>

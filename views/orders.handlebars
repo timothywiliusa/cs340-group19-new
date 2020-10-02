@@ -1,0 +1,19 @@
+<h1>My Orders:</h1>
+
+</select>
+  <TABLE BORDER="5"    WIDTH="90%"   CELLPADDING="4" CELLSPACING="3">
+   <TR>
+      <TH>Order #</TH>
+      <TH>Order Type</TH>
+      <TH>Cancel</TH>
+   </TR>
+  {{#each search}}
+   <TR ALIGN="CENTER">
+   <form action='/orders/delete/id'>
+      <td> <input type='hidden' name="id" value="{{id}}">{{id}}</td>
+      <td name ='ordertype'>{{ordertype}}</td>
+      <td><input type='submit' value="Cancel Order">
+   </form>
+   </TR>
+  {{/each}}
+</TABLE>

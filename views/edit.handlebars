@@ -1,9 +1,8 @@
-
-
-<h1>Post New Item For Sale</h1>
-<form id="newsale" action="../myitems/" method="post">
-Title: <input name='title' type='text' value=''><br>
-Item Type: <select id='type' name="type">
+<h1>Edit Item</h1>
+{{#each search}}
+<form id="newsale" action="../myitems/edit" method="post">
+Title: <input name='title' type='text' value='{{title}}'><input type='hidden' name='id' value='{{id}}'><br>
+Item Type: <select id='type' name="type" value={{merchType}}>
   <option value="Weapon">Weapon</option>
   <option value="Blueprint">Blueprint</option>
   <option value="Program">Program</option>
@@ -13,7 +12,8 @@ Item Type: <select id='type' name="type">
   <option value="Nutrition">Nutrition/Substance</option>
   <option value="Armor">Armor/Apparel</option>
   </select><br>
-  Cost (universal units): <input name='cost' type='text' value=''><br>
-  Quantity: <input name='quantity' type='text' value=''><br>
+  Cost (universal units): <input name='cost' type='text' value={{price}}><br>
+  Quantity: <input name='quantity' type='text' value={{quantity}}><br>
     <input type="submit" value="Submit">
 </form>
+{{/each}}

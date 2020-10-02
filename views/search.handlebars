@@ -23,10 +23,12 @@ Select: <select name="type">
    </TR>
   {{#each search}}
    <TR ALIGN="CENTER">
+    <form action='/search/add/id'>
       <td>{{merchType}}</td>
-      <td>{{title}}</td>
+      <td><input type = 'hidden' name='id' value="{{id}}">{{title}}</td>
       <td>{{price}}</td>
-      <td><button>add to cart</button></td>
+      <td><input type='submit' value='add to cart'></td>
+   </form>
    </TR>
   {{/each}}
 </TABLE>

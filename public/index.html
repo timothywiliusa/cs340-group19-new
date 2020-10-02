@@ -1,18 +1,37 @@
 <link rel="stylesheet" type="text/css" href="/index.css" media="screen"/>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <html>
+<style>
+body {
+  background-image: url('https://images.squarespace-cdn.com/content/v1/5bec9c8fe2ccd1ee355eee8e/1547343486898-T1SZ5ZJ5873L749J2LFE/ke17ZwdGBToddI8pDm48kN4gQkkwWjTUAAoch08PIJB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0geeCvn1f36QDdcifB7yxGjMM5VDfE2hHto8olj_hZ7D_MDA0fBhXEtI-RoaXSVklA/DS+Background+Mailchimp.jpg?format=2500w');
+}
+</style>
 <head>
   <title> Spaceshop </title>
 </head>
 <body>
-  <h2> Welcome to SpaceShop </h2>
-  <h3> Login </h4>
-    <form action="/profile" method='get'>
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img src= "https://www.ebuyer.com/blog/wp-content/uploads/2019/11/Inside-spaceship.jpg" width="1500" height="700">
+  
+  <div class = "w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+  <h2 class = "w3-hide-medium w3-hide-small w3-xxxlarge w3-center"> Welcome to SpaceShop </h2>
+  <p>Register an account, then you can login with the same username and password</p>
+  <p>Warning: There is no front end type checking or error handling. All input needs to be in the correct format (ints and string no empty values for the most part)</p>
+  <p>Or else it is going to crash the website. If the server is down for grading, please email: jacomatt@oregonstate.edu</p>
+  <p>And I can promptly start the website back up again</p>
+  </div>
+</header>
+
+<div class = "w3-container w3-grey w3-content" style="max-width:500px">
+  <h3 class = "w3-center w3-text-light-grey"> Login </h4>
+    <form action="/profile/log" method='get' class = "w3-center w3-text-light-grey">
     Username: <input name='username' type='text' value=''><br>
     Password: <input name='passcode' type='password' value=''><br>
     <input type="submit" value="Sign In">
     </form>
-  <h3> Register </h4>
-  <form action="/profile" method='post'>
+  
+  <h3 class = "w3-center w3-text-light-grey"> Register </h4>
+  <form action="/profile" method='post' class = "w3-center w3-text-light-grey">
     Username: <input name='usernamereg' type='text' value=''><br>
     Password: <input name='passcodereg' type='password' value=''><br>
   <h5> Optional Address </h5>
@@ -23,6 +42,7 @@
     PO Box: <input name='POBox' type='text' value=''><br>
     <input type="submit" value="Register">
   </form>
-
+</div>
+<br>
 </body>
 </html>
